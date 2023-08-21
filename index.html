@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assest/css/style.css">
+</head>
+<body>
+    <div class="main">
+        <form action="" method="POST" class="form" id="form-1">
+            <h3 class="heading">
+                Thành viên đăng ký
+            </h3>
+
+            <p class="desc">
+                <!-- Cùng nhau học lập trình miễn phí tại F8 ❤️ -->
+                Mạnh Hùng
+            </p>
+
+            <div class="spacer"></div>
+
+            <div class="form-ground">
+                <label for="fullname" class="form-laber">
+                    Tên đầy đủ
+                </label>
+
+                <input id="fullname" type="text" name="fullname" placeholder="VD:Nguyễn Mạnh Hùng"
+                class="form-control">
+                <sspan class="form-message"></sspan>
+            </div>
+
+            <div class="form-ground">
+                <label for="email" class="form-laber">
+                    Email
+                </label>
+
+                <input id="email" type="email" name="email" placeholder="VD:manhhung@gmail.com"
+                class="form-control">
+                <sspan class="form-message"></sspan>
+            </div>
+
+            <div class="form-ground">
+                <label for="password" class="form-laber">
+                    Mật khẩu
+                </label>
+
+                <input id="password" type="password" name="password" placeholder="Nhập Mật Khẩu"
+                class="form-control">
+                <sspan class="form-message"></sspan>
+            </div>
+
+            <div class="form-ground">
+                <label for="password_confirmation" class="form-laber">
+                    Nhập Lại Mật Khẩu
+                </label>
+
+                <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Nhập Nhại Mật Khẩu"
+                class="form-control">
+                <sspan class="form-message"></sspan>
+            </div>
+
+            <button class="form-submut">Đăng Ký</button>
+        </form>
+
+        <script src="./assest/css/main.js"></script>
+
+        <script>
+
+            // Mong muốn của chúng ta khi sử dụng thư viện trong tương lai
+            Validator({
+                form: '#form-1',
+                errorSelector: '.form-message',
+                rules: [
+                    // isRequired: bắt buộc điền
+                    // dòng 74 là bắt buộc user phải điền tên vào form.
+                    Validator.isRequired('#fullname', 'Vui long nhap ten day du'),
+                    Validator.isEmail('#email', 'Vui long nhap dung email'),
+                    Validator.minLength('#password', 6),
+                    // hàm nhập lại mật khẩu thì phải giống như dữ liệu người dùng nhập vào.
+                    // nếu nhập vào dữ liệu đúng với password thì nhận còn k thì báo lỗi.
+                    Validator.isConfirmed('#password_confirmation', function () {
+                        /*
+                        dòng return 85 nhận khi nhập đúng mật khẩu ở password, nếu nhập sai sẽ báo đỏ
+                        */
+                        return document.querySelector('#form-1 #password').value;
+                    }, 'Mật Khẩu Nhập Không đúng') // custom message theo y minh
+                ]
+            });
+        </script>
+    </div>
+</body>
+</html>
